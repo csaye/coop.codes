@@ -1,0 +1,50 @@
+.container {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: fadein 4s linear forwards;
+  animation-delay: 3s;
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  >p {
+    z-index: 1;
+    transition: 0.25s;
+    margin: 0;
+    position: fixed;
+  }
+
+  .score,
+  .highScore {
+    top: 8px;
+    font-size: 24px;
+  }
+
+  .score {
+    left: 8px;
+  }
+
+  .highScore {
+    right: 8px;
+  }
+
+  .esc {
+    bottom: 8px;
+    left: 8px;
+    cursor: pointer;
+  }
+
+  >canvas {
+    display: block;
+    transition: 0.25s;
+    z-index: -1;
+  }
+}
