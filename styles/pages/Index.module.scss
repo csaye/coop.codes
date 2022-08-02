@@ -1,23 +1,108 @@
 .container {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 
-  .center {
-    >h1 {
-      margin: 0;
-      font-size: 48px;
+  .kofiButton {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    transition: 0.25s;
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .center {
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      transition: 0.25s;
+
+      >h1 {
+        font-size: 64px;
+        margin: 0;
+        font-weight: bold;
+
+        @media (max-width: 767.98px) {
+          font-size: 48px;
+        }
+
+        >span {
+          white-space: pre-wrap;
+          display: inline-block;
+          opacity: 0;
+          animation: type 1s forwards;
+          text-shadow: 0 8px 2px #999;
+        }
+      }
+
+      >p {
+        font-style: italic;
+        display: inline-block;
+        margin: 24px 0 0 0;
+        opacity: 0;
+        animation: fadein 1s linear forwards;
+        animation-delay: 1.8s;
+      }
+
+      >.icons {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+
+        >a {
+          color: #000;
+          margin: 0 4px;
+          opacity: 0;
+          animation: fadein 1s linear forwards;
+
+          >svg {
+            font-size: 64px;
+
+            @media (max-width: 767.98px) {
+              font-size: 48px;
+            }
+          }
+
+          &:nth-of-type(1) {
+            animation-delay: 1s;
+          }
+
+          &:nth-of-type(2) {
+            animation-delay: 1.1s;
+          }
+
+          &:nth-of-type(3) {
+            animation-delay: 1.2s;
+          }
+
+          &:hover {
+            color: #2196f3;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
     }
 
-    a {
-      text-decoration: underline;
-      font-size: 18px;
+    to {
+      opacity: 1;
+    }
+  }
 
-      &:hover {
-        color: #2196f3;
-      }
+  @keyframes type {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 }
