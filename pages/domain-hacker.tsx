@@ -55,6 +55,23 @@ export default function DomainHacker() {
       window.alert('No hacks found.');
       return;
     }
+    // sort and set hacks
+    hacks = hacks.sort((a, b) => a.domain > b.domain ? 1 : -1);
+    hacks = hacks.sort((a, b) => a.domain.length - b.domain.length);
+    setHacks(hacks);
+    // set hack availability status
+    hacks.forEach(async (hack, i) => {
+      const newHacks = hacks.slice();
+      const response = await fetch(`/api/whois?domain=${hack.domain}`);
+      let json;
+      try {
+        json = await response.json();
+      } catch (e) {
+        json = null;
+      }
+      newHacks[i].available = json?.isAvailable;
+      setHacks(newHacks);
+    });
   }
 
   return (
