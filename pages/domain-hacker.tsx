@@ -102,6 +102,43 @@ export default function DomainHacker() {
           Find Hacks
         </button>
       </form>
+      <div className={styles.hacks}>
+        {
+          foundHacks.map((hack, i) =>
+            <p key={i}>
+              {
+                hack.available === true ? checkMark :
+                  hack.available === false ? xMark :
+                    hack.available === 'loading' ? dotsMark :
+                      questionMark
+              }
+              {' '}
+              {hack.node}
+              {dotMark}
+              <a
+                href={`https://tld-list.com/tld/${hack.tld}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Check .{hack.tld} registrars ☞
+              </a>
+              {
+                namecheapTlds.includes(hack.tld) &&
+                <>
+                  {dotMark}
+                  <a
+                    href={`https://www.namecheap.com/domains/registration/results/?domain=${hack.domain}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Check NameCheap ☞
+                  </a>
+                </>
+              }
+            </p>
+          )
+        }
+      </div>
     </div>
   );
 }
