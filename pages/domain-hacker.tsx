@@ -35,6 +35,26 @@ export default function DomainHacker() {
       window.alert('Please enter at least 2 letters.');
       return;
     }
+    // find hacks
+    let hacks: Hack[] = [];
+    for (let i = word.length - 1; i > 1; i--) {
+      const start = word.slice(0, i);
+      const end = word.slice(i);
+      for (const tld of tlds) {
+        if (tld.startsWith(end)) {
+          const domain = `${start}.${tld}`;
+          const tldStart = tld.slice(0, end.length);
+          const tldEnd = tld.slice(end.length);
+          const node = <span><b>{start}</b>.<b>{tldStart}</b>{tldEnd}</span>;
+          hacks.push({ available: 'loading', tld, domain, node });
+        }
+      }
+    }
+    // return if no hacks found
+    if (!hacks.length) {
+      window.alert('No hacks found.');
+      return;
+    }
   }
 
   return (
