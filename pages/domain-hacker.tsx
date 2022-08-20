@@ -76,6 +76,32 @@ export default function DomainHacker() {
 
   return (
     <div className={styles.container}>
+      <h1>Domain Hacker</h1>
+      <h2>What is a domain hack?</h2>
+      <p>A domain hack is a domain name that spells out a word.</p>
+      <p>For example, internet could become inter.net.</p>
+      <h2>Find your own domain hack:</h2>
+      <div className={styles.markKey}>
+        <p style={{ whiteSpace: 'pre' }}>
+          {checkMark} available   {xMark} taken   {questionMark} unknown   {dotsMark} loading
+        </p>
+        <p><i>* availability data may not be 100% accurate.</i></p>
+      </div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          findHacks(word);
+        }}
+      >
+        <input
+          value={word}
+          onChange={e => setWord(e.target.value)}
+          placeholder="word"
+        />
+        <button>
+          Find Hacks
+        </button>
+      </form>
     </div>
   );
 }
