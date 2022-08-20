@@ -1,11 +1,16 @@
 import { Email, GitHub, Twitter } from '@mui/icons-material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import KofiButton from '../components/KofiButton';
 import Snake from '../components/Snake';
 import styles from '../styles/pages/Index.module.scss';
 
 export default function Index() {
   const [fade, setFade] = useState(false);
+
+  // prevent body overflow
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
 
   return (
     <div className={styles.container}>
