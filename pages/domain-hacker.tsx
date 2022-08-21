@@ -76,68 +76,79 @@ export default function DomainHacker() {
 
   return (
     <div className={styles.container}>
-      <h1>Domain Hacker</h1>
-      <h2>What is a domain hack?</h2>
-      <p>A domain hack is a domain name that spells out a word.</p>
-      <p>For example, internet could become inter.net.</p>
-      <h2>Find your own domain hack:</h2>
-      <div className={styles.markKey}>
-        <p style={{ whiteSpace: 'pre' }}>
-          {checkMark} available   {xMark} taken   {questionMark} unknown   {dotsMark} loading
-        </p>
-        <p><i>* availability data may not be 100% accurate.</i></p>
-      </div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          findHacks(word);
-        }}
-      >
-        <input
-          value={word}
-          onChange={e => setWord(e.target.value)}
-          placeholder="word"
-        />
-        <button>
-          Find Hacks
-        </button>
-      </form>
-      <div className={styles.hacks}>
+      <div className={styles.background}>
         {
-          foundHacks.map((hack, i) =>
-            <p key={i}>
-              {
-                hack.available === true ? checkMark :
-                  hack.available === false ? xMark :
-                    hack.available === 'loading' ? dotsMark :
-                      questionMark
-              }
-              {' '}
-              {hack.node}
-              {dotMark}
-              <a
-                href={`https://tld-list.com/tld/${hack.tld}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Check .{hack.tld} registrars ☞
-              </a>
-              {
-                namecheapTlds.includes(hack.tld) &&
-                <>
-                  {dotMark}
-                  <a
-                    href={`https://www.namecheap.com/domains/registration/results/?domain=${hack.domain}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Check NameCheap ☞
-                  </a>
-                </>
-              }
-            </p>
+          fillerHacks.map((hack, i) =>
+            <span style={{ color: hack.color }} key={i}>
+              {hack.domain}
+            </span>
           )
         }
+      </div>
+      <div className={styles.content}>
+        <h1>Domain Hacker</h1>
+        <h2>What is a domain hack?</h2>
+        <p>A domain hack is a domain name that spells out a word.</p>
+        <p>For example, internet could become inter.net.</p>
+        <h2>Find your own domain hack:</h2>
+        <div className={styles.markKey}>
+          <p style={{ whiteSpace: 'pre' }}>
+            {checkMark} available   {xMark} taken   {questionMark} unknown   {dotsMark} loading
+          </p>
+          <p><i>* availability data may not be 100% accurate.</i></p>
+        </div>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            findHacks(word);
+          }}
+        >
+          <input
+            value={word}
+            onChange={e => setWord(e.target.value)}
+            placeholder="word"
+          />
+          <button>
+            Find Hacks
+          </button>
+        </form>
+        <div className={styles.hacks}>
+          {
+            foundHacks.map((hack, i) =>
+              <p key={i}>
+                {
+                  hack.available === true ? checkMark :
+                    hack.available === false ? xMark :
+                      hack.available === 'loading' ? dotsMark :
+                        questionMark
+                }
+                {' '}
+                {hack.node}
+                {dotMark}
+                <a
+                  href={`https://tld-list.com/tld/${hack.tld}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  .{hack.tld} registrars ☞
+                </a>
+                {
+                  namecheapTlds.includes(hack.tld) &&
+                  <>
+                    {dotMark}
+                    <a
+                      href={`https://www.namecheap.com/domains/registration/results/?domain=${hack.domain}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Namecheap ☞
+                    </a>
+                  </>
+                }
+              </p>
+            )
+          }
+        </div>
       </div>
     </div>
   );
