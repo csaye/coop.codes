@@ -1,3 +1,8 @@
+:root {
+  --highlight: #2196f3;
+  --highlightHover: #3f51b5;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +12,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 
 html,
@@ -17,4 +23,9 @@ body,
 
 button {
   cursor: pointer;
+}
+
+button,
+input {
+  font-family: 'Montserrat', sans-serif;
 }
