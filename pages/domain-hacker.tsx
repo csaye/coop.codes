@@ -1,5 +1,6 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import styles from '../styles/pages/DomainHacker.module.scss';
+import { getFillerHacks } from '../util/fillerHacks';
 import { namecheapTlds } from '../util/namecheapTlds';
 import { tlds } from '../util/tlds';
 
@@ -10,9 +11,15 @@ type Hack = {
   node: ReactNode
 };
 
+type FillerHack = {
+  domain: string,
+  color: string
+};
+
 export default function DomainHacker() {
   const [word, setWord] = useState('');
   const [foundHacks, setHacks] = useState<Hack[]>([]);
+  const [fillerHacks, setFillerHacks] = useState<FillerHack[]>([]);
 
   // mark nodes
   const checkMark = <span style={{ color: 'green' }}><b>✓</b></span>;
@@ -20,6 +27,30 @@ export default function DomainHacker() {
   const dotsMark = <span style={{ color: 'gray' }}><b>…</b></span>;
   const questionMark = <span style={{ color: 'goldenrod' }}><b>?</b></span>;
   const dotMark = <span style={{ color: 'black' }}><b> • </b></span>;
+
+  // get filler hacks on start
+  useEffect(() => {
+    // shuffles given array
+    function shuffleArray(array: any[]) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+    // returns a random code color
+    let lastRand: number;
+    function randomColor() {
+      const colors = ['#F8F8F2', '#75715E', '#F92672', '#FD971F', '#E69F66', '#E6DB74', '#A6E22E', '#66D9EF', '#AE81FF'];
+      let rand;
+      do { rand = Math.floor(Math.random() * colors.length); } while (rand === lastRand);
+      lastRand = rand;
+      return colors[rand];
+    }
+    // shuffle and set filler hacks
+    const hacks = getFillerHacks();
+    shuffleArray(hacks);
+    setFillerHacks(hacks.map(hack => ({ domain: hack, color: randomColor() })));
+  }, []);
 
   // finds hacks for given word
   async function findHacks(word: string) {
@@ -50,11 +81,6 @@ export default function DomainHacker() {
         }
       }
     }
-    // return if no hacks found
-    if (!hacks.length) {
-      window.alert('No hacks found.');
-      return;
-    }
     // sort and set hacks
     hacks = hacks.sort((a, b) => a.domain > b.domain ? 1 : -1);
     hacks = hacks.sort((a, b) => a.domain.length - b.domain.length);
@@ -72,6 +98,8 @@ export default function DomainHacker() {
       newHacks[i].available = json?.isAvailable;
       setHacks(newHacks);
     });
+    // alert if no hacks found
+    if (!hacks.length) window.alert('No hacks found.');
   }
 
   return (
