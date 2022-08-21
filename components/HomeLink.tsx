@@ -1,8 +1,21 @@
+import Link from 'next/link';
 import styles from '../styles/components/HomeLink.module.scss';
 
-export default function HomeLink() {
+type Props = {
+  color?: string
+};
+
+export default function HomeLink(props: Props) {
+  const { color } = props;
+
   return (
-    <div className={styles.container}>
-    </div>
+    <Link href="/">
+      <a
+        className={styles.container}
+        style={{ color: color ?? '#000' }}
+      >
+        coop.codes
+      </a>
+    </Link>
   );
 }
