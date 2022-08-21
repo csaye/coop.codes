@@ -39,12 +39,20 @@
       }
 
       >p {
-        font-style: italic;
         display: inline-block;
         margin: 24px 0 0 0;
         opacity: 0;
         animation: fadein 1s linear forwards;
-        animation-delay: 1.8s;
+
+        >a {
+          color: var(--highlight);
+          text-decoration: none;
+
+          &:hover {
+            color: var(--highlightHover);
+            text-decoration: underline;
+          }
+        }
       }
 
       >.icons {
