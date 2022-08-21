@@ -1,8 +1,23 @@
 .container {
-  padding: 40px;
+  overflow: scroll;
+  height: 100%;
 
-  >h1 {
-    margin-top: 0;
+  >.background {
+    background: #272822;
+    color: #555;
+    position: fixed;
+    inset: -160px;
+    z-index: -1;
+    font-size: 24px;
+    word-spacing: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    transform: rotateZ(-8deg);
+
+    >span {
+      margin: 6px;
+      opacity: 0.2;
+    }
   }
 
   >.hacks {
