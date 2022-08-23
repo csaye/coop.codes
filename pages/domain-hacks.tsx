@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import HomeLink from '../components/HomeLink';
 import KofiButton from '../components/KofiButton';
-import styles from '../styles/pages/DomainHacker.module.scss';
+import styles from '../styles/pages/DomainHacks.module.scss';
 import { getFillerHacks } from '../util/fillerHacks';
 import { namecheapTlds } from '../util/namecheapTlds';
 import { tlds } from '../util/tlds';
