@@ -52,8 +52,11 @@ export default function DomainHacker() {
     setFillerHacks(hacks.map(hack => ({ domain: hack, color: randomColor() })));
   }, []);
 
+  // returns full hacks for given word
+  function getFullHacks(word: string) {
     let hacks: Hack[] = [];
-    for (let i = word.length - 1; i > 1; i--) {
+    // get full hacks
+    for (let i = word.length - 1; i > 0; i--) {
       const start = word.slice(0, i);
       const end = word.slice(i);
       for (const tld of tlds) {
@@ -62,14 +65,72 @@ export default function DomainHacker() {
           const tldStart = tld.slice(0, end.length);
           const tldEnd = tld.slice(end.length);
           const node = <span><b>{start}</b>.<b>{tldStart}</b>{tldEnd}</span>;
-          hacks.push({ available: 'loading', tld, domain, node });
+          hacks.push({ available: 'loading', tld, domain, node, url: domain });
         }
       }
     }
-    // sort and set hacks
+    // sort and return hacks
     hacks = hacks.sort((a, b) => a.domain > b.domain ? 1 : -1);
     hacks = hacks.sort((a, b) => a.domain.length - b.domain.length);
-    setHacks(hacks);
+    return hacks;
+  }
+
+  // pushes path hacks for given word
+  function getPathHacks(word: string, hacks: Hack[]) {
+    // get path hacks
+    for (let i = word.length - 2; i > 0; i--) {
+      for (let j = i + 2; j < word.length; j++) {
+        const start = word.slice(0, i);
+        const tld = word.slice(i, j);
+        const end = word.slice(j);
+        if (tlds.includes(tld)) {
+          const domain = `${start}.${tld}`;
+          if (hacks.some(hack => hack.domain === domain)) continue;
+          const url = `${domain}/${end}`;;
+          const node = <span><b>{start}</b>.<b>{tld}</b>/<b>{end}</b></span>;
+          hacks.push({ available: 'loading', tld, domain, node, url });
+        }
+      }
+    }
+  }
+
+  // returns part hacks for given word
+  function getPartHacks(word: string) {
+    let hacks: Hack[] = [];
+    getPathHacks(word, hacks);
+    // get vowel cut words
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    while (vowels.some(vowel => word.includes(vowel))) {
+      for (let i = word.length - 1; i > 0; i--) {
+        if (vowels.includes(word[i])) {
+          word = word.slice(0, i) + word.slice(i + 1);
+          break;
+        }
+      }
+      if (word.length < 2) continue;
+      // get vowel cut path hacks
+      getPathHacks(word, hacks);
+      // get vowel cut full hacks
+      for (let i = word.length - 2; i > 0; i--) {
+        const start = word.slice(0, i);
+        const end = word.slice(i);
+        for (const tld of tlds) {
+          if (tld === end) {
+            const domain = `${start}.${tld}`;
+            const tldStart = tld.slice(0, end.length);
+            const tldEnd = tld.slice(end.length);
+            const node = <span><b>{start}</b>.<b>{tldStart}</b>{tldEnd}</span>;
+            hacks.push({ available: 'loading', tld, domain, node, url: domain });
+          }
+        }
+      }
+    }
+    // sort and return hacks
+    hacks = hacks.sort((a, b) => a.domain < b.domain ? 1 : -1);
+    hacks = hacks.sort((a, b) => b.url.length - a.url.length);
+    return hacks;
+  }
+
   // finds hacks for given word
   async function findHacks(word: string) {
     // clean up word
