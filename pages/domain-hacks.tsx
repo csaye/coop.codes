@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import HomeLink from '../components/HomeLink';
 import KofiButton from '../components/KofiButton';
 import styles from '../styles/pages/DomainHacks.module.scss';
+import { shuffleArray } from '../util/array';
 import { getFillerHacks } from '../util/fillerHacks';
 import { namecheapTlds } from '../util/namecheapTlds';
 import { tlds } from '../util/tlds';
@@ -23,7 +24,7 @@ export default function DomainHacker() {
   const [word, setWord] = useState('');
   const [fullHacks, setFullHacks] = useState<Hack[]>([]);
   const [partHacks, setPartHacks] = useState<Hack[]>([]);
-  const [fillerHacks, setFillerHacks] = useState<FillerHack[]>([]);
+  const [fillerHacks, setFillerHacks] = useState<FillerHack[]>();
 
   // mark nodes
   const checkMark = <span style={{ color: 'green' }}><b>✓</b></span>;
@@ -33,13 +34,6 @@ export default function DomainHacker() {
 
   // get filler hacks on start
   useEffect(() => {
-    // shuffles given array
-    function shuffleArray(array: any[]) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
     // returns a random code color
     let lastRand: number;
     function randomColor() {
@@ -190,6 +184,7 @@ export default function DomainHacker() {
       <KofiButton />
       <div className={styles.background}>
         {
+          fillerHacks &&
           fillerHacks.map((hack, i) =>
             <span style={{ color: hack.color }} key={i}>
               {hack.domain}
@@ -225,7 +220,7 @@ export default function DomainHacker() {
               placeholder="word"
               required
             />
-            <button>
+            <button className="blueButton">
               Find Hacks
             </button>
           </form>
