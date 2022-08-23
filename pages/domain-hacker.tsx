@@ -114,32 +114,38 @@ export default function DomainHacker() {
         }
       </div>
       <div className={styles.content}>
-        <h1>Domain Hacker</h1>
-        <h2>What is a domain hack?</h2>
-        <p>A domain hack is a domain name that spells out a word.</p>
-        <p>For example, internet could become inter.net.</p>
-        <h2>Find your own domain hack:</h2>
-        <div className={styles.markKey}>
-          <p style={{ whiteSpace: 'pre' }}>
-            {checkMark} available   {xMark} taken   {questionMark} unknown   {dotsMark} loading
-          </p>
-          <p><i>* availability data may not be 100% accurate.</i></p>
+        <div className={styles.head}>
+          <h1>Domain Hacks</h1>
+          <h2>What is a domain hack?</h2>
+          <p>A domain hack is a domain name that spells out a word.</p>
+          <p>For example: internet ⮕ inter.net</p>
+          <h2>Find your own domain hack:</h2>
+          <div className={styles.markKey}>
+            <p>
+              <span>{checkMark} available</span>
+              <span>{xMark} taken</span>
+              <span>{questionMark} unknown</span>
+              <span>{dotsMark} loading</span>
+            </p>
+            <p><i>* availability data may not be 100% accurate.</i></p>
+          </div>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              findHacks(word);
+            }}
+          >
+            <input
+              value={word}
+              onChange={e => setWord(e.target.value)}
+              placeholder="word"
+              required
+            />
+            <button>
+              Find Hacks
+            </button>
+          </form>
         </div>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            findHacks(word);
-          }}
-        >
-          <input
-            value={word}
-            onChange={e => setWord(e.target.value)}
-            placeholder="word"
-          />
-          <button>
-            Find Hacks
-          </button>
-        </form>
         <div className={styles.hacks}>
           {
             foundHacks.map((hack, i) =>
