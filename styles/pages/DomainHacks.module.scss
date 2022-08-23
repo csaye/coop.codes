@@ -71,26 +71,12 @@
 
         >button {
           margin-left: 12px;
-          border: 0;
-          background: var(--highlight);
-          color: #fff;
-          font-size: 16px;
-          font-weight: 600;
           padding: 0 24px;
-          border-radius: 32px;
           flex-shrink: 0;
 
           @media (max-width: 499.98px) {
             padding: 12px 0;
             margin: 12px 0 0 0;
-          }
-
-          &:hover {
-            background: var(--highlightHover);
-          }
-
-          &:active {
-            transform: scale(0.98);
           }
         }
       }
@@ -121,7 +107,7 @@
           }
         }
 
-        &:last-of-type p {
+        p:last-of-type {
           margin-bottom: 0;
         }
       }
