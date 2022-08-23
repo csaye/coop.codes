@@ -148,38 +148,33 @@ export default function DomainHacker() {
         </div>
         <div className={styles.hacks}>
           {
-            foundHacks.map((hack, i) =>
-              <p key={i}>
+            [fullHacks, partHacks].map((hacks, i) =>
+              <div key={i}>
                 {
-                  hack.available === true ? checkMark :
-                    hack.available === false ? xMark :
-                      hack.available === 'loading' ? dotsMark :
-                        questionMark
+                  hacks.map((hack, i) =>
+                    <p key={i}>
+                      {
+                        hack.available === true ? checkMark :
+                          hack.available === false ? xMark :
+                            hack.available === 'loading' ? dotsMark :
+                              questionMark
+                      }
+                      {' '}
+                      <a
+                        href={
+                          namecheapTlds.includes(hack.tld) ?
+                            `https://www.namecheap.com/domains/registration/results/?domain=${hack.domain}` :
+                            `https://regery.com/en/domains/search/${hack.domain}`
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {hack.node}
+                      </a>
+                    </p>
+                  )
                 }
-                {' '}
-                {hack.node}
-                {dotMark}
-                <a
-                  href={`https://tld-list.com/tld/${hack.tld}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  .{hack.tld} registrars ☞
-                </a>
-                {
-                  namecheapTlds.includes(hack.tld) &&
-                  <>
-                    {dotMark}
-                    <a
-                      href={`https://www.namecheap.com/domains/registration/results/?domain=${hack.domain}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Namecheap ☞
-                    </a>
-                  </>
-                }
-              </p>
+              </div>
             )
           }
         </div>
