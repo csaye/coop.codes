@@ -1,4 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
+import HomeLink from '../components/HomeLink';
+import KofiButton from '../components/KofiButton';
 import styles from '../styles/pages/DomainHacker.module.scss';
 import { getFillerHacks } from '../util/fillerHacks';
 import { namecheapTlds } from '../util/namecheapTlds';
@@ -8,6 +10,7 @@ type Hack = {
   available: 'loading' | undefined | true | false,
   tld: string,
   domain: string,
+  url: string,
   node: ReactNode
 };
 
@@ -18,7 +21,8 @@ type FillerHack = {
 
 export default function DomainHacker() {
   const [word, setWord] = useState('');
-  const [foundHacks, setHacks] = useState<Hack[]>([]);
+  const [fullHacks, setFullHacks] = useState<Hack[]>([]);
+  const [partHacks, setPartHacks] = useState<Hack[]>([]);
   const [fillerHacks, setFillerHacks] = useState<FillerHack[]>([]);
 
   // mark nodes
@@ -26,7 +30,6 @@ export default function DomainHacker() {
   const xMark = <span style={{ color: 'red' }}><b>✘</b></span>;
   const dotsMark = <span style={{ color: 'gray' }}><b>…</b></span>;
   const questionMark = <span style={{ color: 'goldenrod' }}><b>?</b></span>;
-  const dotMark = <span style={{ color: 'black' }}><b> • </b></span>;
 
   // get filler hacks on start
   useEffect(() => {
@@ -40,8 +43,9 @@ export default function DomainHacker() {
     // returns a random code color
     let lastRand: number;
     function randomColor() {
-      const colors = ['#F8F8F2', '#75715E', '#F92672', '#FD971F', '#E69F66', '#E6DB74', '#A6E22E', '#66D9EF', '#AE81FF'];
+      const colors = ['#F8F8F2', '#75715E', '#F92672', '#FD971F', '#E6DB74', '#A6E22E', '#66D9EF', '#AE81FF'];
       let rand;
+      // prevent same color twice in a row
       do { rand = Math.floor(Math.random() * colors.length); } while (rand === lastRand);
       lastRand = rand;
       return colors[rand];
@@ -174,14 +178,16 @@ export default function DomainHacker() {
         json = null;
       }
       newHacks[i].available = json?.isAvailable;
-      setHacks(newHacks);
+      setPartHacks(newHacks);
     });
     // alert if no hacks found
-    if (!hacks.length) window.alert('No hacks found.');
+    if (!fullHacks.length && !partHacks.length) window.alert('No hacks found.');
   }
 
   return (
     <div className={styles.container}>
+      <HomeLink color="#fff" />
+      <KofiButton />
       <div className={styles.background}>
         {
           fillerHacks.map((hack, i) =>
@@ -196,7 +202,7 @@ export default function DomainHacker() {
           <h1>Domain Hacks</h1>
           <h2>What is a domain hack?</h2>
           <p>A domain hack is a domain name that spells out a word.</p>
-          <p>For example: internet ⮕ inter.net</p>
+          <p>For example: internet → inter.net</p>
           <h2>Find your own domain hack:</h2>
           <div className={styles.markKey}>
             <p>
