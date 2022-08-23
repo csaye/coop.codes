@@ -52,21 +52,6 @@ export default function DomainHacker() {
     setFillerHacks(hacks.map(hack => ({ domain: hack, color: randomColor() })));
   }, []);
 
-  // finds hacks for given word
-  async function findHacks(word: string) {
-    // clean up word
-    word = word.toLowerCase();
-    word = word.replace(/[^a-z]+/g, '');
-    // verify word
-    if (!word) {
-      window.alert('Please enter letter characters.');
-      return;
-    }
-    if (word.length < 2) {
-      window.alert('Please enter at least 2 letters.');
-      return;
-    }
-    // find hacks
     let hacks: Hack[] = [];
     for (let i = word.length - 1; i > 1; i--) {
       const start = word.slice(0, i);
@@ -85,9 +70,41 @@ export default function DomainHacker() {
     hacks = hacks.sort((a, b) => a.domain > b.domain ? 1 : -1);
     hacks = hacks.sort((a, b) => a.domain.length - b.domain.length);
     setHacks(hacks);
+  // finds hacks for given word
+  async function findHacks(word: string) {
+    // clean up word
+    word = word.toLowerCase();
+    word = word.replace(/[^a-z]+/g, '');
+    // verify word
+    if (!word) {
+      window.alert('Word must contain letter characters.');
+      return;
+    }
+    if (word.length < 2) {
+      window.alert('Word must be at least 2 letters.');
+      return;
+    }
+    // get and set hacks
+    const fullHacks = getFullHacks(word);
+    setFullHacks(fullHacks);
+    const partHacks = getPartHacks(word);
+    setPartHacks(partHacks);
     // set hack availability status
-    hacks.forEach(async (hack, i) => {
-      const newHacks = hacks.slice();
+    fullHacks.forEach(async (hack, i) => {
+      const newHacks = fullHacks.slice();
+      const response = await fetch(`/api/whois?domain=${hack.domain}`);
+      let json;
+      try {
+        json = await response.json();
+      } catch (e) {
+        json = null;
+      }
+      newHacks[i].available = json?.isAvailable;
+      setFullHacks(newHacks);
+    });
+    // set part hack availability status
+    partHacks.forEach(async (hack, i) => {
+      const newHacks = partHacks.slice();
       const response = await fetch(`/api/whois?domain=${hack.domain}`);
       let json;
       try {
