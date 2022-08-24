@@ -109,3 +109,30 @@ export const letters: TextWidth[] = [
     width: 13.609375
   }
 ];
+
+export const accentedLetters: TextWidth[] = [
+  {
+    text: "î",
+    width: 3.640625
+  },
+  {
+    text: "ï",
+    width: 3.640625
+  },
+  {
+    text: "í",
+    width: 3.640625
+  },
+  {
+    text: "ī",
+    width: 3.640625
+  },
+  {
+    text: "į",
+    width: 3.640625
+  },
+  {
+    text: "ì",
+    width: 3.640625
+  }
+];
