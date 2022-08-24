@@ -136,3 +136,70 @@ export const accentedLetters: TextWidth[] = [
     width: 3.640625
   }
 ];
+
+export const pathLetters: TextWidth[] = [
+  {
+    text: "j",
+    width: 3.6328125
+  },
+  {
+    text: "i",
+    width: 3.640625
+  },
+  {
+    text: "l",
+    width: 3.734375
+  },
+  {
+    text: "î",
+    width: 3.640625
+  },
+  {
+    text: "ï",
+    width: 3.640625
+  },
+  {
+    text: "í",
+    width: 3.640625
+  },
+  {
+    text: "ī",
+    width: 3.640625
+  },
+  {
+    text: "į",
+    width: 3.640625
+  },
+  {
+    text: "ì",
+    width: 3.640625
+  },
+  {
+    text: "I",
+    width: 3.96875
+  },
+  {
+    text: "Î",
+    width: 3.96875
+  },
+  {
+    text: "Ï",
+    width: 3.96875
+  },
+  {
+    text: "Í",
+    width: 3.96875
+  },
+  {
+    text: "Ī",
+    width: 3.96875
+  },
+  {
+    text: "Į",
+    width: 3.96875
+  },
+  {
+    text: "Ì",
+    width: 3.96875
+  }
+];
