@@ -18,6 +18,28 @@ export default function Index() {
         className={styles.kofiButton}
       >
         <KofiButton />
+      <div className={styles.icons}>
+        <a
+          href="https://github.com/csaye"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHub />
+        </a>
+        <a
+          href="mailto:hi@coop.codes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Email />
+        </a>
+        <a
+          href="https://twitter.com/CooperComputer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Twitter />
+        </a>
       </div>
       <div className={styles.content}>
         <div
@@ -42,29 +64,6 @@ export default function Index() {
               <a>Domain Hacks</a>
             </Link>
           </p>
-          <div className={styles.icons}>
-            <a
-              href="https://github.com/csaye"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHub />
-            </a>
-            <a
-              href="mailto:hi@coop.codes"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Email />
-            </a>
-            <a
-              href="https://twitter.com/CooperComputer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter />
-            </a>
-          </div>
         </div>
       </div>
     </div>
