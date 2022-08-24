@@ -11,13 +11,13 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
-      <HomeLink />
       <Snake fade={fade} setFade={setFade} />
-      <div
-        style={{ opacity: fade ? 0 : 1 }}
-        className={styles.kofiButton}
-      >
-        <KofiButton />
+      <div style={{ opacity: fade ? 0 : 1, transition: '0.25s' }}>
+        <HomeLink />
+        <div className={styles.kofiButton}>
+          <KofiButton />
+        </div>
+      </div>
       <div className={styles.icons}>
         <a
           href="https://github.com/csaye"
@@ -62,6 +62,14 @@ export default function Index() {
           <p>
             <Link href="/domain-hacks">
               <a>Domain Hacks</a>
+            </Link>
+            <b> • </b>
+            <Link href="/i-acute">
+              <a>I-Acute (í.is)</a>
+            </Link>
+            <b> • </b>
+            <Link href="/add-a-word">
+              <a>Add a Word</a>
             </Link>
           </p>
         </div>
