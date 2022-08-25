@@ -38,5 +38,38 @@
         font-weight: 600;
       }
     }
+
+    >.examples {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 14px 0;
+
+      >span>span {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -10px;
+          height: 4px;
+          border: 1px solid #999;
+          border-bottom: 0;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -10px;
+          height: 4px;
+          border: 1px solid #999;
+          border-top: 0;
+        }
+      }
+    }
   }
 }
