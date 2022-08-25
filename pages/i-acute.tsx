@@ -37,6 +37,32 @@ export default function IAcute() {
 
   return (
     <div className={styles.container}>
+      <Header />
+      <div className={styles.background}>
+        <div />
+      </div>
+      <div className={styles.content}>
+        <h1>I-Acute (í.is)</h1>
+        <h2>A Literal URL Shortener</h2>
+        <p>What if you could shorten URLs by both length <b>and</b> width?</p>
+        <div>
+          <span style={{ margin: '0 43px' }}>12 chars</span>
+          <span style={{ margin: '0 -1px' }}>7 chars</span>
+        </div>
+        <div className={styles.examples}>
+          <span className="defaultFont" style={{ color: 'red' }}>
+            ✘ <span>bit.ly/3c5Op1H</span>
+          </span>
+          <span className="defaultFont" style={{ color: 'green' }}>
+            <b className="montserrat">✓</b> <span>í.is/ÏIįÎ</span>
+          </span>
+        </div>
+        <div>
+          <span style={{ margin: '0 52px' }}>107px</span>
+          <span style={{ margin: '0 5px' }}>40px</span>
+        </div>
+        <p>How short could a URL get?</p>
+      </div>
     </div>
   );
 }
