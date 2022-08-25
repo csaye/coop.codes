@@ -62,6 +62,22 @@ export default function IAcute() {
           <span style={{ margin: '0 5px' }}>40px</span>
         </div>
         <p>How short could a URL get?</p>
+        <h2>Short Domain Names</h2>
+        <p>The shortest domain currently possible, length-wise, is 3 characters. 1 for the domain name and 2 for the domain ending (TLD). For example:</p>
+        <div>
+          <span style={{ margin: '0 -10px' }}>name</span>
+          <span style={{ margin: '0 20px' }}>TLD</span>
+        </div>
+        <div className={styles.gco}>
+          <span>g</span>.<span>co</span>
+        </div>
+        <div>
+          <span style={{ margin: '0 11px' }}>1</span>
+          <span style={{ margin: '0 16px' }}>2</span>
+        </div>
+        <div>
+        </div>
+        <p>Realistically, all 3 character letter domains are taken. They&apos;re heavily desired and picked over by the domain community.</p>
       </div>
     </div>
   );
