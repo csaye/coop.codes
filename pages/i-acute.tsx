@@ -78,6 +78,18 @@ export default function IAcute() {
         <div>
         </div>
         <p>Realistically, all 3 character letter domains are taken. They&apos;re heavily desired and picked over by the domain community.</p>
+        <h2>Special Characters</h2>
+        <p>However, some TLDs allow special characters in the name. Special characters are infrequently used and could be our ticket to a short domain.</p>
+        <p style={{ fontSize: '14px' }}>à á â ä æ ã å ā ç ć č è é ê ë ē ė ę î ï í ī į ì ł ñ ń ô ö ò ó œ ø ō õ ß ś š û ü ù ú ū ÿ ž ź ż</p>
+        <h2>Narrowest Names</h2>
+        <p>The accented i characters are the narrowest. That means that the narrowest available name is likely going to be one of these characters:</p>
+        <div className={styles.narrowest}>
+          {
+            accentedLetters.map((letter, i) =>
+              <TextWidth {...letter} key={i} />
+            )
+          }
+        </div>
       </div>
     </div>
   );
