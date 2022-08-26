@@ -209,6 +209,16 @@ export default function IAcute() {
             />
           </Tooltip>
         </p>
+        <h2>Conclusion</h2>
+        <p>Is it practical? Not really.</p>
+        <p>Is it cool? Yes.</p>
+        <p className={styles.footer}>
+          <Link href="/">
+            <a>coop.codes</a>
+          </Link>
+          <b> • </b>
+          {new Date().getFullYear()}
+        </p>
       </div>
     </div>
   );
