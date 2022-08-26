@@ -90,6 +90,15 @@ export default function IAcute() {
             )
           }
         </div>
+        <h2>Narrowest Letters</h2>
+        <p>In addition to a narrow name, we need a narrow TLD. To figure out which are narrowest, let&apos;s measure the letters:</p>
+        <div className={styles.narrowest}>
+          {
+            letters.map((letter, i) =>
+              <TextWidth {...letter} key={i} />
+            )
+          }
+        </div>
       </div>
     </div>
   );
