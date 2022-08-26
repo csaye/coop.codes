@@ -33,6 +33,28 @@ export default function AddAWord() {
   const xMark = <span style={{ color: 'red' }}><b>✘</b></span>;
   const dotsMark = <span style={{ color: 'gray' }}><b>…</b></span>;
   const questionMark = <span style={{ color: 'goldenrod' }}><b>?</b></span>;
+
+  // get filler words on start
+  useEffect(() => {
+    // returns a random code color
+    let lastRand: number;
+    function randomColor() {
+      const colors = ['#F8F8F2', '#75715E', '#F92672', '#FD971F', '#E6DB74', '#A6E22E', '#66D9EF', '#AE81FF'];
+      let rand;
+      // prevent same color twice in a row
+      do { rand = Math.floor(Math.random() * colors.length); } while (rand === lastRand);
+      lastRand = rand;
+      return colors[rand];
+    }
+    // shuffle and set filler words
+    const allWords = [...adjectives, ...adverbs, ...nouns, ...verbs];
+    let words: string[] = [];
+    for (const word of allWords) {
+      if (!words.includes(word)) words.push(word);
+    }
+    shuffleArray(words);
+    setFillerWords(words.map(word => ({ text: word, color: randomColor() })));
+  }, []);
   return (
     <div className={styles.container}>
     </div>
