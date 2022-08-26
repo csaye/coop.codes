@@ -149,5 +149,27 @@
         }
       }
     }
+
+    >.clickCopy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+
+      >a {
+        font-size: 32px;
+      }
+
+      .copyLink {
+        font-size: 32px;
+        top: 2px;
+        cursor: pointer;
+        color: var(--highlight);
+
+        &:hover {
+          color: var(--highlightHover);
+        }
+      }
+    }
   }
 }
