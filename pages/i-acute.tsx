@@ -165,6 +165,13 @@ export default function IAcute() {
         }
         <p>There are 16 characters under 4 pixels we can use for the path: j, i, l, capital i, i&apos;s six accented variations, and capital i&apos;s six accented variations.</p>
         <p>Randomly stringing four of these characters together allows for 16<sup>4</sup>, or 65,536, path combinations. That should be plenty for our shortener.</p>
+        <h2>í.is</h2>
+        <p>So that&apos;s the final structure of our length/width-minimized URL shortener:</p>
+        <TextWidth
+          text="í.is/ÏIįÎ"
+          width={39.890625}
+        />
+        <p>We were able to create a shortener that brings URLs to just 7 characters and about 40 pixels, shorter and narrower than the vast majority of URLs.</p>
       </div>
     </div>
   );
