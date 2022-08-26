@@ -75,6 +75,28 @@ export default function AddAWord() {
       adj: adjectives, adv: adverbs, noun: nouns, verb: verbs
     }[modifier.split('-')[0]];
     if (!words) return;
+    shuffleArray(words);
+    let domains: Result[] = [];
+    words.slice(0, resultCount).forEach(word => {
+      const wordA = capitalize(base);
+      const wordB = capitalize(word);
+      const domain = modifier.split('-')[1] === 'a' ? wordA + wordB : wordB + wordA;
+      domains.push({ available: 'loading', domain: `${domain}.${tld}` });
+    });
+    setResults(domains);
+    // set domain availability status
+    domains.forEach(async (result, i) => {
+      const newDomains = domains.slice();
+      const response = await fetch(`/api/whois?domain=${result.domain}`);
+      let json;
+      try {
+        json = await response.json();
+      } catch (e) {
+        json = null;
+      }
+      newDomains[i].available = json?.isAvailable;
+      setResults(newDomains);
+    });
   }
 
   return (
