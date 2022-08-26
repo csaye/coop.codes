@@ -147,6 +147,24 @@ export default function IAcute() {
           width={19.78125}
         />
         <p>That means we now have a domain that is less than 20 pixels wide.</p>
+        <h2>Making the URL Shortener</h2>
+        <p>URL shorteners are typically in the following format:</p>
+        <div className={styles.shortener}>
+          <span>bit.ly</span>/<span>3c5Op1H</span>
+        </div>
+        <div>
+          <span style={{ margin: '0 8px' }}>domain</span>
+          <span style={{ margin: '0 56px' }}>path</span>
+        </div>
+        <p>The domain is the base of the URL and the path defines the destination.</p>
+        <p>For our shortener, we&apos;ll want to shorten the path as much as possible.</p>
+        {
+          pathLetters.map((letter, i) =>
+            <TextWidth {...letter} key={i} />
+          )
+        }
+        <p>There are 16 characters under 4 pixels we can use for the path: j, i, l, capital i, i&apos;s six accented variations, and capital i&apos;s six accented variations.</p>
+        <p>Randomly stringing four of these characters together allows for 16<sup>4</sup>, or 65,536, path combinations. That should be plenty for our shortener.</p>
       </div>
     </div>
   );
