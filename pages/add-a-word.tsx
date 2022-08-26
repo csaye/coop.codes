@@ -55,6 +55,28 @@ export default function AddAWord() {
     shuffleArray(words);
     setFillerWords(words.map(word => ({ text: word, color: randomColor() })));
   }, []);
+
+  // finds domains with given word and modifier
+  function findDomains() {
+    // clean up word
+    let base = baseWord.toLowerCase();
+    base = base.replace(/[^a-z0-9]+/g, '');
+    // verify word
+    if (!base) {
+      window.alert('Word must contain letter or number characters.');
+      return;
+    }
+    // capitalizes given word
+    function capitalize(word: string) {
+      if (!word.length) return '';
+      return word[0].toUpperCase() + word.slice(1).toLowerCase();
+    }
+    const words = {
+      adj: adjectives, adv: adverbs, noun: nouns, verb: verbs
+    }[modifier.split('-')[0]];
+    if (!words) return;
+  }
+
   return (
     <div className={styles.container}>
     </div>
