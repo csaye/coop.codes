@@ -99,6 +99,47 @@ export default function IAcute() {
             )
           }
         </div>
+        <h2>Narrowest TLDs</h2>
+        <p>Using this letter data we can figure out the narrowest TLDs currently available for public registration. The 12 narrowest are listed below:</p>
+        <table className={styles.table}>
+          <tbody>
+            {
+              bigScreen ?
+                <tr>
+                  <th>TLD</th>
+                  <th>Pixel Width</th>
+                  <th>Country</th>
+                  <th>Special Characters</th>
+                  <th>Available Worldwide</th>
+                  <th>Top Level Unreserved</th>
+                </tr> :
+                <tr className={styles.small}>
+                  <th>TLD</th>
+                  <th>Pixel Width</th>
+                  <th>Special Chars</th>
+                  <th>Available Worldwide</th>
+                  <th>Top Level Unreserved</th>
+                </tr>
+            }
+            {
+              shortTlds.map((tld, i) =>
+                <tr
+                  key={i}
+                  className={tld.tld === 'is' ? styles.winner : undefined}
+                >
+                  <td>.{tld.tld}</td>
+                  <td>{tld.width.toFixed(2)}</td>
+                  {bigScreen && <td>{tld.country}</td>}
+                  <td>{tld.specialChars ? checkMark : xMark}</td>
+                  <td>{tld.worldwide ? checkMark : xMark}</td>
+                  <td>{tld.unreserved ? checkMark : xMark}</td>
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
+        <p>In addition to being public, the TLD also needs to allow special characters, be available worldwide, and not have 1 character names reserved.</p>
+        <p>Based on those factors, Iceland&apos;s <b>.is</b> appears to be the shortest viable TLD.</p>
       </div>
     </div>
   );
