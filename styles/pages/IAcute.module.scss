@@ -129,5 +129,25 @@
         }
       }
     }
+
+    >.shortener {
+      font-size: 32px;
+      margin-bottom: 14px;
+
+      >span {
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -10px;
+          height: 4px;
+          border: 1px solid #999;
+          border-top: 0;
+        }
+      }
+    }
   }
 }
