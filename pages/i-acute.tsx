@@ -140,6 +140,13 @@ export default function IAcute() {
         </table>
         <p>In addition to being public, the TLD also needs to allow special characters, be available worldwide, and not have 1 character names reserved.</p>
         <p>Based on those factors, Iceland&apos;s <b>.is</b> appears to be the shortest viable TLD.</p>
+        <h2>Getting the Domain</h2>
+        <p>Out of the six i characters, only í was available under .ís. So I registered it.</p>
+        <TextWidth
+          text="í.is"
+          width={19.78125}
+        />
+        <p>That means we now have a domain that is less than 20 pixels wide.</p>
       </div>
     </div>
   );
