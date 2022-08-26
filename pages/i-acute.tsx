@@ -172,6 +172,43 @@ export default function IAcute() {
           width={39.890625}
         />
         <p>We were able to create a shortener that brings URLs to just 7 characters and about 40 pixels, shorter and narrower than the vast majority of URLs.</p>
+        <h2>How to Access í.is</h2>
+        <p>
+          The easiest way is to just click on a link or copy-paste:{' '}
+        </p>
+        <p className={styles.clickCopy}>
+          <a
+            className="url"
+            href="https://í.is"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            í.is
+          </a>
+          <Tooltip title={copyText} arrow>
+            <ContentCopyIcon
+              className={styles.copyLink}
+              onClick={() => copyLink('https://í.is')}
+            />
+          </Tooltip>
+        </p>
+        <p>Domains with special characters are encoded by the browser. That means you can also type the encoded equivalent to access í.is:</p>
+        <p className={styles.clickCopy}>
+          <a
+            className="url"
+            href="https://xn--eda.is"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            xn--eda.is
+          </a>
+          <Tooltip title={copyText} arrow>
+            <ContentCopyIcon
+              className={styles.copyLink}
+              onClick={() => copyLink('https://xn--eda.is')}
+            />
+          </Tooltip>
+        </p>
       </div>
     </div>
   );
