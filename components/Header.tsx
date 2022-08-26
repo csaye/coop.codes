@@ -14,7 +14,22 @@ export default function Header(props: Props) {
   const bigScreen = useMediaQuery('(min-width: 992px)');
 
   return (
-    <div className={styles.container}>
+    <div
+      className={
+        (unresponsive || bigScreen) ? styles.container : styles.containerBar
+      }
+    >
+      <Link href="/">
+        <a
+          className={styles.home}
+          style={{ color: (light && bigScreen) ? '#fff' : undefined }}
+        >
+          coop.codes
+        </a>
+      </Link>
+      <div className={styles.kofi}>
+        <KofiButton />
+      </div>
     </div>
   );
 }
