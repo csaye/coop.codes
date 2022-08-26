@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
-import HomeLink from '../components/HomeLink';
-import KofiButton from '../components/KofiButton';
+import Header from '../components/Header';
 import styles from '../styles/pages/DomainHacks.module.scss';
 import { shuffleArray } from '../util/array';
 import { getFillerHacks } from '../util/fillerHacks';
@@ -180,8 +179,7 @@ export default function DomainHacker() {
 
   return (
     <div className={styles.container}>
-      <HomeLink color="#fff" />
-      <KofiButton />
+      <Header light />
       <div className={styles.background}>
         {
           fillerHacks &&

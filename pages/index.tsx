@@ -1,8 +1,7 @@
 import { Email, GitHub, Twitter } from '@mui/icons-material';
 import Link from 'next/link';
 import { useState } from 'react';
-import HomeLink from '../components/HomeLink';
-import KofiButton from '../components/KofiButton';
+import Header from '../components/Header';
 import Snake from '../components/Snake';
 import styles from '../styles/pages/Index.module.scss';
 
@@ -11,13 +10,13 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
-      <Snake fade={fade} setFade={setFade} />
-      <div style={{ opacity: fade ? 0 : 1, transition: '0.25s' }}>
-        <HomeLink />
-        <div className={styles.kofiButton}>
-          <KofiButton />
-        </div>
+      <div
+        className={styles.headerWrap}
+        style={{ opacity: fade ? 0 : 1 }}
+      >
+        <Header unresponsive />
       </div>
+      <Snake fade={fade} setFade={setFade} />
       <div className={styles.icons}>
         <a
           href="https://github.com/csaye"
