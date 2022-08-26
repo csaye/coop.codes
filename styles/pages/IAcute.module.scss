@@ -102,5 +102,32 @@
         }
       }
     }
+
+    >.table {
+      margin: 0 auto;
+
+      tr:first-of-type {
+        th {
+          padding: 0 4px;
+        }
+
+        &.small th {
+          @media (max-width: 575.98px) {
+            font-size: 12px;
+          }
+        }
+      }
+
+      tr.winner {
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 255, 0, 0.25);
+        }
+      }
+    }
   }
 }
