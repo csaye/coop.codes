@@ -101,6 +101,17 @@ export default function AddAWord() {
 
   return (
     <div className={styles.container}>
+      <Header light />
+      <div className={styles.background}>
+        {
+          fillerWords &&
+          fillerWords.map((word, i) =>
+            <span style={{ color: word.color }} key={i}>
+              {word.text}
+            </span>
+          )
+        }
+      </div>
     </div>
   );
 }
