@@ -103,6 +103,12 @@
       }
     }
 
+    .narrowest {
+      text-align: left;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
     >.table {
       margin: 0 auto;
 
@@ -169,6 +175,15 @@
         &:hover {
           color: var(--highlightHover);
         }
+      }
+    }
+
+    >.footer {
+      color: #999;
+      margin-bottom: 0;
+
+      a:hover {
+        text-decoration: underline;
       }
     }
   }
