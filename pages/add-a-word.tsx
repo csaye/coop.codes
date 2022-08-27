@@ -121,6 +121,32 @@ export default function AddAWord() {
             findDomains();
           }}
         >
+          <input
+            value={baseWord}
+            onChange={e => setBaseWord(e.target.value)}
+            placeholder="word"
+            required
+          />
+          <div>
+            <select value={modifier} onChange={e => setModifier(e.target.value)}>
+              <option value="adj-a">Adjective After</option>
+              <option value="adv-a">Adverb After</option>
+              <option value="noun-a">Noun After</option>
+              <option value="verb-a">Verb After</option>
+              <option value="adj-b">Adjective Before</option>
+              <option value="adv-b">Adverb Before</option>
+              <option value="noun-b">Noun Before</option>
+              <option value="verb-b">Verb Before</option>
+            </select>
+            <select value={tld} onChange={e => setTld(e.target.value)}>
+              <option value="com">.com</option>
+              <option value="net">.net</option>
+              <option value="org">.org</option>
+            </select>
+            <button className="blueButton">
+              Find Domains
+            </button>
+          </div>
         </form>
         </div>
       </div>
