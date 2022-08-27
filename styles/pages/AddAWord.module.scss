@@ -40,5 +40,47 @@
       margin-top: 0;
       text-align: center;
     }
+
+    >form {
+      display: flex;
+      gap: 8px;
+
+      @media (max-width: 699.98px) {
+        flex-direction: column;
+      }
+
+      >input {
+        font-size: 24px;
+        flex-grow: 1;
+        min-width: 0;
+        padding: 8px;
+        background: #efefef;
+        border-radius: 4px;
+        border: 2px solid #bbb;
+      }
+
+      >div {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+
+        @media (max-width: 699.98px) {
+          justify-content: center;
+          height: 50px;
+        }
+
+        >select {
+          cursor: pointer;
+          border: 2px solid #bbb;
+          border-radius: 4px;
+          background: #efefef;
+        }
+
+        >button {
+          padding: 0 24px;
+          flex-shrink: 0;
+        }
+      }
+    }
   }
 }
