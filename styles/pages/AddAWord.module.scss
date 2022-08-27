@@ -82,5 +82,32 @@
         }
       }
     }
+
+    >.results {
+      display: flex;
+
+      @media (max-width: 499.98px) {
+        flex-direction: column;
+      }
+
+      >div {
+        @media (min-width: 500px) {
+          width: 50%;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        p:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }
