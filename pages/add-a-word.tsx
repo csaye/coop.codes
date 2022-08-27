@@ -112,6 +112,18 @@ export default function AddAWord() {
           )
         }
       </div>
+      <div className={styles.content}>
+        <h1>Add a Word</h1>
+        <p>Generate domain ideas by adding a word to your keyword.</p>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            findDomains();
+          }}
+        >
+        </form>
+        </div>
+      </div>
     </div>
   );
 }
