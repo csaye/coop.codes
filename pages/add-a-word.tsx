@@ -148,6 +148,36 @@ export default function AddAWord() {
             </button>
           </div>
         </form>
+        <div className={styles.results}>
+          {
+            results &&
+            Array(2).fill(null).map((v, i) =>
+              <div key={i}>
+                {
+                  results
+                    .slice(i * halfCount, (i + 1) * halfCount)
+                    .map((result, i) =>
+                      <p key={i}>
+                        {
+                          result.available === true ? checkMark :
+                            result.available === false ? xMark :
+                              result.available === 'loading' ? dotsMark :
+                                questionMark
+                        }
+                        {' '}
+                        <a
+                          href={`https://www.namecheap.com/domains/registration/results/?domain=${result.domain.toLowerCase()}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {result.domain}
+                        </a>
+                      </p>
+                    )
+                }
+              </div>
+            )
+          }
         </div>
       </div>
     </div>
