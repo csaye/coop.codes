@@ -99,6 +99,20 @@ export default function AddAWord() {
     });
   }
 
+  // returns an example result for current data
+  function exampleResult() {
+    // get example modifier
+    const exampleModifier = {
+      adj: 'happy', adv: 'quickly', noun: 'apple', verb: 'think'
+    }[modifier.split('-')[0]];
+    if (!exampleModifier) return;
+    // construct domain
+    const wordA = capitalize(baseWord);
+    const wordB = capitalize(exampleModifier);
+    const domain = modifier.split('-')[1] === 'a' ? wordA + wordB : wordB + wordA;
+    return `${domain}.${tld}`;
+  }
+
   return (
     <div className={styles.container}>
       <Header light />
