@@ -6,12 +6,13 @@
     z-index: -1;
     position: fixed;
     inset: -64px;
+    background: #222;
 
     >div {
       position: absolute;
       inset: -64px;
       background: url('/img/link.png') repeat;
-      opacity: 0.3;
+      opacity: 0.16;
     }
   }
 

@@ -37,7 +37,7 @@ export default function IAcute() {
 
   return (
     <div className={styles.container}>
-      <Header />
+      <Header light />
       <div className={styles.background}>
         <div />
       </div>
