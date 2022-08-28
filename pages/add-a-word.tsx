@@ -1,3 +1,4 @@
+import { capitalize } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import styles from '../styles/pages/AddAWord.module.scss';
@@ -21,9 +22,11 @@ type FillerWord = {
   color: string
 };
 
+type Modifier = 'adj-a' | 'adv-a' | 'noun-a' | 'verb-a' | 'adj-b' | 'adv-b' | 'noun-b' | 'verb-b';
+
 export default function AddAWord() {
   const [baseWord, setBaseWord] = useState('');
-  const [modifier, setModifier] = useState('adj-a');
+  const [modifier, setModifier] = useState<Modifier>('adj-a');
   const [tld, setTld] = useState('com');
   const [results, setResults] = useState<Result[]>();
   const [fillerWords, setFillerWords] = useState<FillerWord[]>();
@@ -66,17 +69,14 @@ export default function AddAWord() {
       window.alert('Word must contain letter or number characters.');
       return;
     }
-    // capitalizes given word
-    function capitalize(word: string) {
-      if (!word.length) return '';
-      return word[0].toUpperCase() + word.slice(1).toLowerCase();
-    }
+    // get words
     const words = {
       adj: adjectives, adv: adverbs, noun: nouns, verb: verbs
     }[modifier.split('-')[0]];
     if (!words) return;
     shuffleArray(words);
     let domains: Result[] = [];
+    // construct domains
     words.slice(0, resultCount).forEach(word => {
       const wordA = capitalize(base);
       const wordB = capitalize(word);
