@@ -11,6 +11,22 @@ export default async function handler(req, res) {
     new Promise(resolve => setTimeout(() => {
       resolve(null);
     }, 5000)),
+    // whois lookup
+    new Promise((resolve) => {
+      whois.lookup(domain, (err, data) => {
+        if (err) resolve(null);
+        let parsed;
+        try {
+          // try parse domain data
+          parsed = parseWhois(data, domain);
+        } catch (e) {
+          // void parse on error
+          parsed = null;
+        }
+        // resolve with parsed data
+        resolve(parsed);
+      });
+    })
   ]);
   // resolve with result
   res.status(200).json(result);
