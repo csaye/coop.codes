@@ -1,4 +1,5 @@
-const whois = require('whois-parsed');
+const whois = require('whois');
+import parseWhois from '../../util/parseWhois';
 
 // handles domain whois lookups
 export default async function handler(req, res) {
