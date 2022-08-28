@@ -144,14 +144,17 @@ export default function AddAWord() {
             findDomains();
           }}
         >
-          <input
-            value={baseWord}
-            onChange={e => setBaseWord(e.target.value)}
-            placeholder="word"
-            required
-          />
           <div>
-            <select value={modifier} onChange={e => setModifier(e.target.value)}>
+            <input
+              value={baseWord}
+              onChange={e => setBaseWord(e.target.value)}
+              placeholder="word"
+              required
+            />
+            <select
+              value={modifier}
+              onChange={e => setModifier(e.target.value as Modifier)}
+            >
               <option value="adj-a">Adjective After</option>
               <option value="adv-a">Adverb After</option>
               <option value="noun-a">Noun After</option>
@@ -166,10 +169,11 @@ export default function AddAWord() {
               <option value="net">.net</option>
               <option value="org">.org</option>
             </select>
-            <button className="blueButton">
-              Find Domains
-            </button>
           </div>
+          {baseWord && <p><span>example result:</span> {exampleResult()}</p>}
+          <button className="blueButton">
+            Find Domains
+          </button>
         </form>
         <div className={styles.results}>
           {
