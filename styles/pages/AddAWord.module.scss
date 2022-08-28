@@ -36,6 +36,15 @@
       border-left: 2px solid #000;
     }
 
+    .markKey p {
+      display: flex;
+      flex-wrap: wrap;
+
+      >span {
+        margin: 4px;
+      }
+    }
+
     >h1 {
       margin-top: 0;
       text-align: center;

@@ -115,6 +115,15 @@ export default function AddAWord() {
       <div className={styles.content}>
         <h1>Add a Word</h1>
         <p>Generate domain ideas by adding a word to your keyword.</p>
+        <div className={styles.markKey}>
+          <p>
+            <span>{checkMark} available</span>
+            <span>{xMark} taken</span>
+            <span>{questionMark} unknown</span>
+            <span>{dotsMark} loading</span>
+          </p>
+          <p><i>* availability data may not be 100% accurate.</i></p>
+        </div>
         <form
           onSubmit={e => {
             e.preventDefault();
