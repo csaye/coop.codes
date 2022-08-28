@@ -15,8 +15,7 @@
     "@mui/material": "^5.9.3",
     "next": "12.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "whois-parsed": "^1.0.8"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "18.6.1",
