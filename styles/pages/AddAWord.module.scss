@@ -14,6 +14,10 @@
     flex-wrap: wrap;
     transform: rotateZ(-8deg);
 
+    @media (max-width: 699.98px) {
+      display: none;
+    }
+
     >span {
       margin: 6px;
       opacity: 0.2;
@@ -26,7 +30,7 @@
     padding: 40px;
     margin: 0 auto;
 
-    @media (max-width: 699.97px) {
+    @media (max-width: 699.98px) {
       width: 100%;
     }
 

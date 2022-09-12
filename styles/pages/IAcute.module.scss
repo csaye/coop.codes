@@ -8,6 +8,10 @@
     inset: -64px;
     background: #222;
 
+    @media (max-width: 699.98px) {
+      display: none;
+    }
+
     >div {
       position: absolute;
       inset: -64px;
@@ -112,6 +116,7 @@
 
     >.table {
       margin: 0 auto;
+      border-collapse: collapse;
 
       tr:first-of-type {
         th {
@@ -125,15 +130,8 @@
         }
       }
 
-      tr.winner {
-        position: relative;
-
-        &::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 255, 0, 0.25);
-        }
+      tr.winner td {
+        background: rgba(0, 255, 0, 0.25);
       }
     }
 
