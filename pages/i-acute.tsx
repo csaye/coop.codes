@@ -139,14 +139,14 @@ export default function IAcute() {
           </tbody>
         </table>
         <p>In addition to being public, the TLD also needs to allow special characters, be available worldwide, and not have 1 character names reserved.</p>
-        <p>Based on those factors, Iceland&apos;s <b>.is</b> appears to be the shortest viable TLD.</p>
+        <p>Based on those factors, Iceland&apos;s <b>.is</b> appears to be the narrowest viable TLD.</p>
         <h2>Getting the Domain</h2>
-        <p>Out of the six i characters, only í was available under .ís. So I registered it.</p>
+        <p>Out of the six &quot;i&quot; variants, only í was available under .is. So I registered it.</p>
         <TextWidth
           text="í.is"
           width={19.78125}
         />
-        <p>That means we now have a domain that is less than 20 pixels wide.</p>
+        <p>That means we now have a base domain that is less than 20 pixels wide.</p>
         <h2>Making the URL Shortener</h2>
         <p>URL shorteners are typically in the following format:</p>
         <div className={styles.shortener}>
@@ -213,10 +213,11 @@ export default function IAcute() {
         <p>Is it practical? Not really.</p>
         <p>Is it cool? Yes.</p>
         <p className={styles.footer}>
+          &copy;{' '}
           <Link href="/">
             <a>coop.codes</a>
           </Link>
-          <b> • </b>
+          {' '}
           {new Date().getFullYear()}
         </p>
       </div>
