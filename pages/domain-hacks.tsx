@@ -98,7 +98,7 @@ export default function DomainHacker() {
     // get vowel cut words
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     while (vowels.some(vowel => word.includes(vowel))) {
-      for (let i = word.length - 1; i > 0; i--) {
+      for (let i = word.length - 1; i > -1; i--) {
         if (vowels.includes(word[i])) {
           word = word.slice(0, i) + word.slice(i + 1);
           break;
